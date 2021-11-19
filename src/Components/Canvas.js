@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import FloodFill from "q-floodfill";
+import FloodFill, {    setColorAtPixel, getColorAtPixel,} from "q-floodfill";
 import { Context } from "konva/lib/Context";
 
 function Canvas(){
@@ -21,12 +21,13 @@ function Canvas(){
         context.scale(2,2);
         context.lineCap = "round";
         context.strokeStyle = "black";
-        context.lineWidth = 5;
+        context.lineWidth = 10;
         contextRef.current = context;    
         setImageData(context.getImageData(0, 0, canvas.width, canvas.height))
     },[])
 
     const handleMouseDown = ({nativeEvent})=>{
+        console.log(nativeEvent)
         const canvas = canvasRef.current
         const context = canvas.getContext("2d")
         const {offsetX, offsetY} = nativeEvent;
@@ -37,7 +38,7 @@ function Canvas(){
             
             const floodFill = new FloodFill(imageData);
 
-            floodFill.fill("#9f3282", offsetX, offsetY, 0)
+            floodFill.fill("#9f3282", Math.floor(offsetX*2), Math.floor(offsetY*2), 0)
             contextRef.current.putImageData(floodFill.imageData, 0, 0)
         }
         if(tool === "pen"){
