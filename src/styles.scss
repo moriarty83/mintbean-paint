@@ -99,8 +99,11 @@ nav {
   }
 
   .button-div {
+    width: 50%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     button {
       margin: 1em;
@@ -109,10 +112,12 @@ nav {
 }
 
 button {
+  width: 250px;
   @include primary();
   font-size: 1.2em;
   transition: all 0.2s;
   &:hover {
+    width: 300px;
     @include secondary();
     font-size: 1.4em;
   }
@@ -126,4 +131,27 @@ select {
   @include primary();
   font-size: 1.2em;
   font-family: "Cinzel Decorative", cursive;
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+  //   box-shadow: 0px 2px 5px var(--highlight);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5em;
+  background: radial-gradient(var(--secondary) 10%, var(--primary) 90%);
+  margin-top: 3em;
+
+  p {
+    color: var(--secondary-variant);
+  }
+  .version {
+    margin: 0;
+    font-size: 0.7em;
+    color: var(--highlight);
+  }
 }

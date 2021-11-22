@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# DRAW
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Frontend Web-Based Drawing Application
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Draw is a web based drawing application built for the MintBean Jr. Web Developer Hackaton held in November of 2021. This simple frontend application offers users the ability to draw on a canvas with a wide range of color and brush strokes as well as a flood fill option.
 
-### `yarn start`
+Instead of offering a backend for storing and sharing images, this application offers users the ability to download their creation to their local computer.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Executing program
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Simply visit URL with any modern web browser. Functionality with Internet Explorer cannot be guarenteed.
 
-### `yarn test`
+### Screenshot
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Draw Screenshot](/public/screenshot.png)
 
-### `yarn build`
+### Libraries & Technologies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- SASS Version 1.43.4
+- Canvas to Image Version 2.2.0
+- Q-Floodfill Version 1.3.1",
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Authors
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Christopher Moriarty
 
-### `yarn eject`
+- https://github.com/moriarty83
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Version History
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 0.1
+  - Initial Release
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Acknowledgments
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Inspiration, code snippets, etc.
 
-## Learn More
+- Lasha Kakhidze's Canvas to Image library and documentation (https://www.npmjs.com/package/canvas-to-image)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Maksim Ivanov - 'Let's Build a Drawing Application using React and Canvas API' (https://www.youtube.com/watch?v=FLESHMJ-bI0)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Pentium10's Answer to 'How to clear the canvas for redrawing' (https://stackoverflow.com/questions/2142535/how-to-clear-the-canvas-for-redrawing?rq=1)
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Readme Template Thanks to DomPizzie (https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)

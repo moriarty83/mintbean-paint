@@ -19,16 +19,14 @@ function Canvas(){
     const [color, setColor] = useState("#000000")
     const [stroke, setStroke] = useState(3);
     
+    /////////////////////////
+    // REFs
+    /////////////////////////
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
 
-    function fillWhite (){
-        const floodFill = new FloodFill(imageData);
 
-        floodFill.fill("#FFFFFF", Math.floor(1*2), Math.floor(1*2), 0)
-        contextRef.current.putImageData(floodFill.imageData, 0, 0)
-    }
-
+    // Establishes Refs and States on initial load.
     useEffect(() =>{
         const canvas = canvasRef.current;
         canvas.width = window.innerWidth;
@@ -53,6 +51,7 @@ function Canvas(){
 
     },[])
 
+    // Initiates Draw or Fill
     const handleMouseDown = ({nativeEvent})=>{
         console.log(canvasRef.current)
         const canvas = canvasRef.current
@@ -77,6 +76,7 @@ function Canvas(){
         setIsDrawing(true);}
     }
 
+    // End Draw
     const handleMouseUp = ()=> {
         const canvas = canvasRef.current
         const context = canvas.getContext("2d")
@@ -87,6 +87,7 @@ function Canvas(){
 
     }
 
+    // Draw
     const handleMouseMove = ({nativeEvent})=>{
         if(isDrawing === false){return}
         const {offsetX, offsetY} = nativeEvent;
@@ -96,14 +97,17 @@ function Canvas(){
 
     }
 
+    // Set Color
     const handleColor = (event ) => {
         setColor(event.target.value)
     }
 
+    // End drawing
     const handleStroke = (event)=>{
         setStroke(+event.target.value)
     }
 
+    // Download Image
     const handleDownload = (el)=>{
         const canvas = canvasRef.current;
         canvasToImage(canvas, {
@@ -113,6 +117,7 @@ function Canvas(){
           });;
     }
 
+    // Clear Canvas
     const handleClear = ()=>{
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
