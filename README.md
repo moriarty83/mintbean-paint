@@ -5,9 +5,11 @@ https://draw-mintbean.herokuapp.com/
 
 ## Description
 
-Draw is a web based drawing application built for the MintBean Jr. Web Developer Hackaton held in November of 2021. This simple frontend application offers users the ability to draw on a canvas with a wide range of color and brush strokes as well as a flood fill option.
+Draw is a web based drawing application for desktop built for the MintBean Jr. Web Developer Hackaton held in November of 2021. This simple frontend application offers users the ability to draw on a canvas with a wide range of color and brush strokes as well as a flood fill option.
 
 Instead of offering a backend for storing and sharing images, this application offers users the ability to download their creation to their local computer.
+
+Note: Unfortunately mobile support is not avialable at this time.
 
 ### Executing program
 
@@ -23,6 +25,7 @@ Simply visit https://draw-mintbean.herokuapp.com/ with any modern web browser. F
 - SASS Version 1.43.4
 - Canvas to Image Version 2.2.0
 - Q-Floodfill Version 1.3.1
+- Mouse Event Offset Version 3.0.2
 
 ## Authors
 

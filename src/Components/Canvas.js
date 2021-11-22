@@ -8,6 +8,8 @@ import FloodFill, {    setColorAtPixel, getColorAtPixel,} from "q-floodfill";
 // Saving Image
 import canvasToImage from 'canvas-to-image';
 
+import offset from 'mouse-event-offset';
+
 function Canvas(){
 
     /////////////////////////
@@ -53,10 +55,11 @@ function Canvas(){
 
     // Initiates Draw or Fill
     const handleMouseDown = ({nativeEvent})=>{
-        console.log(canvasRef.current)
         const canvas = canvasRef.current
         const context = canvas.getContext("2d")
-        const {offsetX, offsetY} = nativeEvent;
+        const offsetX = offset(nativeEvent, canvas)[0]
+        const offsetY = offset(nativeEvent, canvas)[1]
+
         setImageData(context.getImageData(0, 0, canvas.width, canvas.height))
 
         if(tool === "fill")
@@ -89,14 +92,19 @@ function Canvas(){
 
     // Draw
     const handleMouseMove = ({nativeEvent})=>{
+        nativeEvent.stopImmediatePropagation()
         if(isDrawing === false){return}
-        const {offsetX, offsetY} = nativeEvent;
+        const canvas = canvasRef.current;
+        const offsetX = offset(nativeEvent, canvas)[0]
+        const offsetY = offset(nativeEvent, canvas)[1]
         contextRef.current.lineTo(offsetX, offsetY)
     
         contextRef.current.stroke()
 
     }
 
+
+    
     // Set Color
     const handleColor = (event ) => {
         setColor(event.target.value)
@@ -161,7 +169,7 @@ function Canvas(){
             {/* CANVAS */}
             <div className="canvas-div">
                 <canvas
-                onTouch={handleMouseDown}
+                onTouchStart={handleMouseDown}
                 onTouchEnd={handleMouseUp}
                 onTouchMove={handleMouseMove}
 
