@@ -1,6 +1,7 @@
 # DRAW
 
 A Frontend Web-Based Drawing Application
+https://draw-mintbean.herokuapp.com/
 
 ## Description
 
@@ -10,7 +11,7 @@ Instead of offering a backend for storing and sharing images, this application o
 
 ### Executing program
 
-Simply visit URL with any modern web browser. Functionality with Internet Explorer cannot be guarenteed.
+Simply visit https://draw-mintbean.herokuapp.com/ with any modern web browser. Functionality with Internet Explorer cannot be guarenteed.
 
 ### Screenshot
 
@@ -21,7 +22,7 @@ Simply visit URL with any modern web browser. Functionality with Internet Explor
 - React
 - SASS Version 1.43.4
 - Canvas to Image Version 2.2.0
-- Q-Floodfill Version 1.3.1",
+- Q-Floodfill Version 1.3.1
 
 ## Authors
 
