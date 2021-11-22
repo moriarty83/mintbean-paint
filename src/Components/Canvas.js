@@ -1,36 +1,60 @@
+/////////////////////////
+// DEPENDENCIES
+/////////////////////////
+// React
 import React, { useState, useEffect, useRef } from "react";
+// Flood Fill
 import FloodFill, {    setColorAtPixel, getColorAtPixel,} from "q-floodfill";
-import { Context } from "konva/lib/Context";
+// Saving Image
+import canvasToImage from 'canvas-to-image';
 
 function Canvas(){
+
+    /////////////////////////
+    // STATES
+    /////////////////////////
     const [tool, setTool] = React.useState('pen');
-    const canvasRef = useRef(null);
-    const contextRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [imageData, setImageData] = useState(null);
     const [color, setColor] = useState("#000000")
+    const [stroke, setStroke] = useState(3);
     
+    const canvasRef = useRef(null);
+    const contextRef = useRef(null);
 
+    function fillWhite (){
+        const floodFill = new FloodFill(imageData);
+
+        floodFill.fill("#FFFFFF", Math.floor(1*2), Math.floor(1*2), 0)
+        contextRef.current.putImageData(floodFill.imageData, 0, 0)
+    }
 
     useEffect(() =>{
         const canvas = canvasRef.current;
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.height = window.innerWidth;
         canvas.style.width = `${window.innerWidth/2}px`;
-        canvas.style.height = `${window.innerHeight/2}px`;
+        canvas.style.height = `${window.innerWidth/2}px`;
         canvas.style.border = `2px solid black`;
 
         const context = canvas.getContext("2d")  
         context.scale(2,2);
         context.lineCap = "round";
         context.strokeStyle = color;
-        context.lineWidth = 10;
-        contextRef.current = context;    
+        context.lineWidth = stroke;
+        contextRef.current = context;
+        
+        // Fill
+        const floodFill = new FloodFill(context.getImageData(0, 0, canvas.width, canvas.height));
+        floodFill.fill("#FFFFFF", Math.floor(1*2), Math.floor(1*2), 0)
+        contextRef.current.putImageData(floodFill.imageData, 0, 0)
+
         setImageData(context.getImageData(0, 0, canvas.width, canvas.height))
+
     },[])
 
     const handleMouseDown = ({nativeEvent})=>{
-        console.log(nativeEvent)
+        console.log(canvasRef.current)
         const canvas = canvasRef.current
         const context = canvas.getContext("2d")
         const {offsetX, offsetY} = nativeEvent;
@@ -38,7 +62,7 @@ function Canvas(){
 
         if(tool === "fill")
         {    //Flood Fill
-            
+
             const floodFill = new FloodFill(imageData);
 
             floodFill.fill(color, Math.floor(offsetX*2), Math.floor(offsetY*2), 0)
@@ -46,6 +70,8 @@ function Canvas(){
         }
         if(tool === "pen"){
         // Draw
+        contextRef.current.strokeStyle = color;
+        contextRef.current.lineWidth = stroke;
         contextRef.current.beginPath();
         contextRef.current.moveTo(offsetX, offsetY);
         setIsDrawing(true);}
@@ -65,35 +91,87 @@ function Canvas(){
         if(isDrawing === false){return}
         const {offsetX, offsetY} = nativeEvent;
         contextRef.current.lineTo(offsetX, offsetY)
-        contextRef.current.strokeStyle = color;
+    
         contextRef.current.stroke()
 
     }
 
     const handleColor = (event ) => {
         setColor(event.target.value)
-        console.log(color)
     }
+
+    const handleStroke = (event)=>{
+        setStroke(+event.target.value)
+    }
+
+    const handleDownload = (el)=>{
+        const canvas = canvasRef.current;
+        canvasToImage(canvas, {
+            name: 'myImage',
+            type: 'png',
+            quality: 1.0
+          });;
+    }
+
+    const handleClear = ()=>{
+        const canvas = canvasRef.current;
+        const context = canvas.getContext("2d");
+        setImageData(context.clearRect(0, 0, canvas.width, canvas.height));
+
+    }
+
 
     return(
         <>
-        <input type="color" name="color" id="" onChange={handleColor}/>
-        <select 
-        value={tool}
-        onChange={(e) => {
-            setTool(e.target.value);
-        }}
-        >
-            <option value="pen">Pen</option>
-            <option value="fill">Fill</option>
-        </select>
-        <div className="canvas-div">
-            <canvas
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            ref={canvasRef}
-            />
+        <div className="canvas-container">
+            {/* TOOLS */}
+            <div className="toolbox">
+                <div className="tool">
+                    <label for="color">Color</label>
+                    <input type="color" name="color" id="" onChange={handleColor}/>
+                </div>
+
+                <div className="tool">
+                <label for="stroke">Stroke</label>
+                <input type="range" name="stroke" min="1" max="20" step="1" value={stroke} onChange={handleStroke}/>
+                <span>{stroke}</span>
+                </div>
+
+                <div className="tool">
+                    <label for="tool">Tool</label>
+                    <select 
+                    name="tool"
+                    value={tool}
+                    onChange={(e) => {
+                        setTool(e.target.value);
+                    }}
+                    >
+                        <option value="pen">Pen</option>
+                        <option value="fill">Fill</option>
+                    </select>
+                </div>
+                
+            </div>
+
+            {/* CANVAS */}
+            <div className="canvas-div">
+                <canvas
+                onTouch={handleMouseDown}
+                onTouchEnd={handleMouseUp}
+                onTouchMove={handleMouseMove}
+
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}
+                ref={canvasRef}
+                />
+            </div>
+
+            {/* BUTTONS */}
+            <div className="button-div">
+                <button onClick={handleClear}>Clear Canvas</button>
+                <button onClick={handleDownload}>Download</button>
+            </div>
         </div>
         </>
     )
