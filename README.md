@@ -21,7 +21,7 @@ Simply visit https://draw-mintbean.herokuapp.com/ with any modern web browser. F
 
 ### Libraries & Technologies
 
-- React
+- React Version 17.0.2
 - SASS Version 1.43.4
 - Canvas to Image Version 2.2.0
 - Q-Floodfill Version 1.3.1
