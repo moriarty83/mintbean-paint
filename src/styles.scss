@@ -139,11 +139,12 @@ footer {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 5em;
+  height: 5.5em;
   bottom: 0;
   background: radial-gradient(var(--secondary) 10%, var(--primary) 90%);
 
   p {
+    text-align: center;
     color: var(--highlight);
   }
   .version {
@@ -154,19 +155,32 @@ footer {
 }
 
 .about-div {
-  position: inherit;
+  position: fixed;
+  bottom: 0px;
   border: 2px solid var(--primary);
   box-shadow: 2px 2px 3px var(--primary-variant);
   padding: 1em;
-  margin: 0em auto 7em auto;
-  opacity: 1;
+
+  opacity: 0.95;
   width: 90%;
-  height: 100%;
+  margin: 1em auto 3em auto;
+  height: 20em;
   transition: all 0.5s;
+  background-color: whitesmoke;
+
   &.hidden {
     margin: 0 auto 0 auto;
     height: 0em;
     opacity: 0;
     transition: all 0.5s;
   }
+}
+
+.foot-container {
+  width: 100%;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
