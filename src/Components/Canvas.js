@@ -87,6 +87,7 @@ function Canvas(){
         contextRef.current.closePath();
         setIsDrawing(false);
         setImageData(context.getImageData(0, 0, canvas.width, canvas.height))
+        
 
     }
 
@@ -130,6 +131,7 @@ function Canvas(){
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
         setImageData(context.clearRect(0, 0, canvas.width, canvas.height));
+        setImageData(context.getImageData(0, 0, canvas.width, canvas.height))
 
     }
 
